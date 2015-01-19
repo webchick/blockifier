@@ -1,12 +1,18 @@
 <?php
 
-$string = 'BLOCKIFIED TEXT';
-$hex = '127344';
+class Blockifier {
 
-for ($char = 'A'; $char <= 'Z'; $char++) {
-  $string = str_replace($char, '&#' . $hex . ';', $string); 
-  $hex++;
+  public static function blockify($string) {
+    $hex = '127344';
+
+    for ($char = 'A'; $char <= 'Z'; $char++) {
+      $string = str_replace($char, '&#' . $hex . ';', $string);
+      $hex++;
+    }
+
+    return $string;
+  }
 }
 
-echo $string;
+echo Blockifier::blockify('BLOCKIFIED TEXT');
 
