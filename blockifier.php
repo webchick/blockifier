@@ -1,18 +1,27 @@
 <?php
 
+namespace Blockifier;
+
 class Blockifier {
 
-  public static function blockify($string) {
+  protected $string;
+
+  public function __construct($string) {
+    $this->string = $string;
+  }
+
+  public function blockify() {
     $hex = '127344';
 
     for ($char = 'A'; $char <= 'Z'; $char++) {
-      $string = str_replace($char, '&#' . $hex . ';', $string);
+      $this->string = str_replace($char, '&#' . $hex . ';', $this->string);
       $hex++;
     }
 
-    return $string;
+    return $this->string;
   }
+
 }
 
-echo Blockifier::blockify('BLOCKIFIED TEXT');
-
+$b = new Blockifier('BLOCKIFIED TEXT');
+echo $b->blockify();
